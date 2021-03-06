@@ -21,7 +21,9 @@ from keras.layers import Dropout, Flatten, Dense, GlobalAveragePooling2D,BatchNo
 import datetime
 from keras.utils import np_utils
 
-# Loading train images
+# ============================================================================= 
+# Loading training and validation sets
+# =============================================================================
 def noisy(noise_typ,image):
    if noise_typ == "gauss":
       row,col,ch= image.shape
@@ -32,9 +34,6 @@ def noisy(noise_typ,image):
       gauss = gauss.reshape(row,col,ch)
       image = image + gauss
       return image
-# ============================================================================= 
-# Loading training and validation sets
-# =============================================================================
 
 images_path = "/content/gdrive/My Drive/CT_COVID/"
 images = glob.glob(images_path + "*.png") + glob.glob(images_path + "*.jpg")
@@ -110,8 +109,6 @@ Total_time_training=end-start
 print ('Total_time_training:',Total_time_training )
 
 history=trained_model.history
-
-
 losses=history['loss']
 val_losses=history['val_loss']
 ac=history['accuracy']
